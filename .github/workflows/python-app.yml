@@ -31,7 +31,7 @@ jobs:
 
   quality-gate:
     runs-on: ubuntu-latest
-    
+
     needs: build
 
     steps:
@@ -60,20 +60,6 @@ jobs:
       with:
         name: test-results
         path: test-results/results.xml
-
-    - name: Generate coverage report
-      run: |
-        pytest --cov=your_package_name --cov-report=xml --cov-report=html
-        mv htmlcov coverage-html
-        mv coverage.xml test-results/coverage.xml
-
-    - name: Upload coverage report
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage-report
-        path: |
-          test-results/coverage.xml
-          coverage-html
 
     - name: Generate HTML test report
       run: |
